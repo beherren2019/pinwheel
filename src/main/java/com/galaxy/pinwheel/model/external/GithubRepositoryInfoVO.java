@@ -1,4 +1,4 @@
-package com.galaxy.pinwheel.model;
+package com.galaxy.pinwheel.model.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GithubRepositoryInfoDto {
+public class GithubRepositoryInfoVO {
 
     @JsonProperty("total_count")
     private Long total;
@@ -21,5 +21,5 @@ public class GithubRepositoryInfoDto {
     private boolean isIncompleteResult;
 
     @JsonProperty("items")
-    private List<GithubRepositoryListDto> githubRepositoryListDtoList;
+    private List<GithubRepositoryItemVO> githubRepositoryItemVOList;
 }

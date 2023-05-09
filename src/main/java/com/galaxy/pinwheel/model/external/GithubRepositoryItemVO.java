@@ -1,24 +1,18 @@
-package com.galaxy.pinwheel.model;
+package com.galaxy.pinwheel.model.external;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class GithubRepositoryListDto {
+public class GithubRepositoryItemVO {
 
     private Long id;
 
@@ -34,7 +28,7 @@ public class GithubRepositoryListDto {
     @JsonProperty("private")
     private boolean isPrivate;
 
-    private RepositoryOwnerDto owner;
+    private RepositoryOwnerVO owner;
 
     @JsonProperty("html_url")
     private String htmlUrl;
@@ -208,7 +202,7 @@ public class GithubRepositoryListDto {
     @JsonProperty("open_issues_count")
     private Long openIssuesCount;
 
-    private LicenseDto license;
+    private LicenseVO license;
 
     @JsonProperty("allow_forking")
     private boolean isAllowForking;

@@ -1,7 +1,8 @@
 package com.galaxy.pinwheel.service.external.impl;
 
 import com.galaxy.pinwheel.exception.ExternalServiceException;
-import com.galaxy.pinwheel.model.GithubRepositoryInfoDto;
+import com.galaxy.pinwheel.model.GithubResponseVO;
+import com.galaxy.pinwheel.model.external.GithubRepositoryInfoVO;
 import com.galaxy.pinwheel.model.GithubSearchInfoVO;
 import com.galaxy.pinwheel.service.external.GithubRepositoryService;
 import com.galaxy.pinwheel.util.GitHubSearchUtil;
@@ -24,16 +25,16 @@ public class GithubRepositoryServiceImpl implements GithubRepositoryService {
     private RestTemplate restTemplate;
 
     @Override
-    public GithubRepositoryInfoDto getGithubRepositories(GithubSearchInfoVO githubSearchInfoVO) {
+    public GithubRepositoryInfoVO getGithubRepositories(GithubSearchInfoVO githubSearchInfoVO) {
 
         log.info("GithubRepositoryServiceImpl::getGithubRepositories::Start");
 
-        GithubRepositoryInfoDto result;
+        GithubRepositoryInfoVO externalResult;
 
         try {
             String url = GitHubSearchUtil.buildGithubUrl(baseUrl, githubSearchInfoVO);
 
-            result = restTemplate.getForObject(url, GithubRepositoryInfoDto.class);
+            externalResult = restTemplate.getForObject(url, GithubRepositoryInfoVO.class);
 
         } catch (HttpClientErrorException e) {
             throw new ExternalServiceException("Exception while calling external GitHub service!", e);
@@ -45,7 +46,7 @@ public class GithubRepositoryServiceImpl implements GithubRepositoryService {
 
         log.info("GithubRepositoryServiceImpl::getGithubRepositories::End");
 
-        return result;
+        return externalResult;
     }
 
 

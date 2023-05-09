@@ -1,4 +1,4 @@
-package com.galaxy.pinwheel.model;
+package com.galaxy.pinwheel.model.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LicenseDto {
+public class LicenseVO {
 
     private String key;
 

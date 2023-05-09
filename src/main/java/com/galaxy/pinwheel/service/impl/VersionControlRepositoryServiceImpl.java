@@ -1,6 +1,8 @@
 package com.galaxy.pinwheel.service.impl;
 
-import com.galaxy.pinwheel.model.GithubRepositoryInfoDto;
+import com.galaxy.pinwheel.mapper.GithubResponseMapper;
+import com.galaxy.pinwheel.model.GithubResponseVO;
+import com.galaxy.pinwheel.model.external.GithubRepositoryInfoVO;
 import com.galaxy.pinwheel.model.GithubSearchInfoVO;
 import com.galaxy.pinwheel.service.VersionControlRepositoryService;
 import com.galaxy.pinwheel.service.external.GithubRepositoryService;
@@ -19,8 +21,11 @@ public class VersionControlRepositoryServiceImpl implements VersionControlReposi
     @Qualifier(value = "githubRepositoryServiceImpl")
     private GithubRepositoryService githubRepositoryService;
 
+    @Autowired
+    private GithubResponseMapper githubResponseMapper;
+
     @Override
-    public GithubRepositoryInfoDto getGithubRepositories(int pageNo, int pageSize, String sortBy, String sortDirection, String language, LocalDate date) {
+    public GithubResponseVO getGithubRepositories(int pageNo, int pageSize, String sortBy, String sortDirection, String language, LocalDate date) {
 
         log.info("VersionControlRepositoryServiceImpl::getGithubRepositories::Start");
 
@@ -33,8 +38,12 @@ public class VersionControlRepositoryServiceImpl implements VersionControlReposi
                 .language(language)
                 .build();
 
+        GithubRepositoryInfoVO githubRepositoryInfoVO = githubRepositoryService.getGithubRepositories(githubSearchInfoVO);
+
+        GithubResponseVO githubResponseVO = githubResponseMapper.map(githubRepositoryInfoVO);
+
         log.info("VersionControlRepositoryServiceImpl::getGithubRepositories::End");
 
-        return githubRepositoryService.getGithubRepositories(githubSearchInfoVO);
+        return githubResponseVO;
     }
 }
