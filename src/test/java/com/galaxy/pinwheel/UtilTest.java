@@ -20,7 +20,7 @@ public class UtilTest {
                 .pageSize(1)
                 .sortBy("stars")
                 .sortDirection("desc")
-                .date(LocalDate.now())
+                .date(LocalDate.of(2023,05, 9))
                 .build());
 
         assertEquals("localhost:8080?q=created:>2023-05-09&sort=stars&order=desc&pageNo=1&per_page=1", gitHubUrl);
